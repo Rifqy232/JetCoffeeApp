@@ -12,6 +12,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -25,9 +29,14 @@ import com.mry.jetcoffeeapp.ui.theme.JetCoffeeAppTheme
 fun SearchBar(
     modifier: Modifier = Modifier,
 ) {
+    var search by remember { mutableStateOf("") }
     TextField(
-        value = "",
-        onValueChange = {},
+        value = search,
+        maxLines = 1,
+        singleLine = true,
+        onValueChange = {
+            search = it
+        },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
